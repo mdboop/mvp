@@ -4,6 +4,9 @@
 logs
 *.log
 
+# API keys
+config.js
+
 # Runtime data
 pids
 *.pid
