@@ -1,6 +1,7 @@
 var request = require('request');
 var Promise = require('bluebird');
 var _ = require('underscore');
+var key = require('./env/config.js');
 var requestPromise = Promise.promisify(request);
 
 exports.getOpenTrucks = function(time) {
@@ -16,12 +17,12 @@ exports.getOpenTrucks = function(time) {
       }
     });
     return trucks;
-  })
+  });
 };
 
 exports.getLocation = function(location) {
   request('https://maps.googleapis.com/maps/api/geocode/json?address=' + 
-    location + 'AIzaSyAQe-GOI8rolvi4Ez3L5kdPkHyarcAYAuI')
+    location + key.key)
   .then(function() {
 
   });
