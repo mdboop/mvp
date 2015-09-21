@@ -6,12 +6,13 @@
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/underscore/underscore-min.js"></script>
   <script src="bower_components/backbone/backbone-min.js"></script>
+  <script src="app.js"></script>  
   <script src="AppView.js"></script>
 </head>
 <body>
   <script>
   $(function() {
-    var app = new AppView();
+    var app = new AppView({model: new App()});
   });
   </script>
 </body>

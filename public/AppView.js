@@ -2,16 +2,19 @@ var AppView = Backbone.View.extend({
   tagName: 'div',
   template: _.template('<h1>Food Truck Finder</h1> \
   <h3>Hungry? Enter your location:</h3> \
-  <input type="text"/> \
-  <input type="submit"/>'),
+  <input class="inputField" type="text"/> \
+  <input class="submitButton" type="submit"/>'),
 
   events: {
-    'click' : 'formSubmit',
-    'key'   : 'formSubmit'
+    'click .formSubmit' : 'formSubmit',
+    'keydown input'   : 'formSubmit'
   },
 
-  formSubmit : function() {
-
+  formSubmit : function(e) {
+    if(e.which === 13) {
+      console.log('hello');
+      this.model.getTime();
+    }
   },
 
   initialize: function () {
