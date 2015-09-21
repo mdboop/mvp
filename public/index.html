@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>trck trckr</title>
-  <script src="app.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/underscore/underscore-min.js"></script>
   <script src="bower_components/backbone/backbone-min.js"></script>
+  <script src="AppView.js"></script>
 </head>
 <body>
-  <h1>Food Truck Finder</h1>
-  <h3>Hungry? Enter your location:</h3>
-  <input type="text"/>
-  <input type="submit"/>
+  <script>
+  $(function() {
+    var app = new AppView();
+  });
+  </script>
 </body>
 </html>
