@@ -1,0 +1,21 @@
+{
+  "name": "mvp-public",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mdboop/2015-08-mvp",
+  "authors": [
+    "Matthew Brooks <mdeanbrooks@gmail.com>"
+  ],
+  "description": "food truck finder client",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "jquery": "~2.1.4"
+  }
+}
