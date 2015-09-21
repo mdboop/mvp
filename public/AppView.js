@@ -13,7 +13,7 @@ var AppView = Backbone.View.extend({
   formSubmit : function(e) {
     if(e.which === 13) {
       console.log('hello');
-      this.model.getTime();
+      this.collection.getTime();
     }
   },
 
