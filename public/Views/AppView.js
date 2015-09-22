@@ -25,6 +25,7 @@ var AppView = Backbone.View.extend({
       var time = this.formatTime();
       var location = this.formatLocation(loc);
       this.model.get('trucks').getTrucks(location, time);
+      $('.inputField').val('');
     }
   },
 

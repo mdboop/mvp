@@ -28,7 +28,9 @@ var Trucks = Backbone.Collection.extend({
       var newTruck = new Truck({
         name: truck.name,
         location: truck.location,
-        distance: truck.distance
+        distance: truck.distance,
+        latitude: truck.latitude,
+        longitude: truck.longitude
       });
       return newTruck;
     });
@@ -37,7 +39,7 @@ var Trucks = Backbone.Collection.extend({
   addTrucks: function (trucks) {
     this.reset();
     trucks = this.filterDupes(trucks);
-    trucks = this.sortTrucks(trucks).slice(0,5);
+    trucks = this.sortTrucks(trucks);
     var truckModels = this.makeTruckModels(trucks);
 
     _.each(truckModels, function(truck) {

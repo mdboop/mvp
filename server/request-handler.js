@@ -31,6 +31,8 @@ var getDistances = function(trucks, location) {
       distance = distance.toPrecision(2) + ' miles';
       var formattedTruck = {
         name: truck.applicant,
+        latitude: truck.latitude,
+        longitude: truck.longitude,
         distance: distance,
         location: truck.location
       };
