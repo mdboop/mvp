@@ -1,14 +1,17 @@
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 var cors = require('cors');
-var request = require('request');
+var request = require('request-promise');
 var Promise = require('bluebird');
 var handler = require('./request-handler.js');
 var root = __dirname + "../public/";
 
-var requestPromise = Promise.promisify(request);
 
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
@@ -19,7 +22,21 @@ app.get('/', function() {
 });
 
 app.post('/food-trucks', function(req, res) {
-  console.log('test');
+  var loc = req.body.location;
+  var time = req.body.time;
+
+  handler.getOpenTrucks(time);
+  // .then(function (trucks) {
+  //   res.send(trucks);
+  // });
+  // handler.getLocation(loc)
+  // .then(function(data) {
+  //   console.log(data);
+  // })
+  // .catch(function(err) {
+  //   console.log('getLocation error: ', err);
+  // });
+  res.sendStatus(200);
 });
 
 
