@@ -1,8 +1,9 @@
 var TruckEntryView = Backbone.View.extend({
   tagname: 'div',
-  template: _.template('<li><%= name %></li> \
-                        <li><%= location %></li> \
-                        <li><%= distance %></li>'),
+  className: 'truck',
+  template: _.template('<li class="truck-name"><%= name %></li> \
+                        <li class="truck-location"><%= location %></li> \
+                        <li class="truck-distance"><%= distance %></li>'),
 
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);

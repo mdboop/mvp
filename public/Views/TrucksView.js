@@ -1,5 +1,6 @@
 var TrucksView = Backbone.View.extend({
   tagName: 'div',
+  className: 'trucks-list',
   initialize: function () {
     this.listenTo(this.collection, 'doneAdding', this.render);
     this.render();
