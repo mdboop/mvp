@@ -14,12 +14,16 @@ var Trucks = Backbone.Collection.extend({
   },
 
   addTrucks: function (trucks) {
-    _.each(trucks, function(truck) {
-      this.add({ model: new Truck({
-        
-      })
+    var truckModels = _.map(trucks, function(truck) {
+      var newTruck = new Truck({
+        name: truck.name,
+        location: truck.location,
+        distance: truck.distance
+      });
+      return newTruck;
     });
-
+    _.each(truckModels, function(truck) {
+      this.add(truck);
     }.bind(this));
   }
  

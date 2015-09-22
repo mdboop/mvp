@@ -9,6 +9,13 @@ var AppView = Backbone.View.extend({
     'click .formSubmit': 'formSubmit',
     'keydown input'    : 'formSubmit'
   },
+  initialize: function () {
+    this.trucks = new TrucksView({
+      collection: this.model.get('trucks')
+    });
+
+    this.render();
+  }, 
 
   formSubmit : function(e) {
     if(e.which === 13) {
@@ -16,7 +23,7 @@ var AppView = Backbone.View.extend({
       var loc = $('.inputField').val();
       var time = this.formatTime();
       var location = this.formatLocation(loc);
-      this.collection.getTrucks(location, time);
+      this.model.get('trucks').getTrucks(location, time);
     }
   },
 
@@ -38,12 +45,10 @@ var AppView = Backbone.View.extend({
     return time;
   },
 
-  initialize: function () {
-    this.listenTo(this.collection, 'add', this.render);
-    this.render();
-  }, 
   render: function () {
-    var el = this.$el.append(this.template());
+    var el = this.$el.html(this.template());
     $('body').append(el);
+    console.log(this.trucks.$el);
+    el.append(this.trucks.$el);
   }
 });
