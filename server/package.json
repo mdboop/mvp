@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^2.10.0",
+    "body-parser": "^1.14.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "request": "^2.63.0",
+    "request-promise": "^0.4.3",
     "underscore": "^1.8.3"
   }
 }

@@ -35,6 +35,7 @@ var AppView = Backbone.View.extend({
       day: daysKey[now[0]],
       hour: now[4].slice(0,2)
     };
+    return time;
   },
 
   initialize: function () {
