@@ -37,13 +37,13 @@ var Trucks = Backbone.Collection.extend({
   addTrucks: function (trucks) {
     this.reset();
     trucks = this.filterDupes(trucks);
-    trucks = this.sortTrucks(trucks);
+    trucks = this.sortTrucks(trucks).slice(0,5);
     var truckModels = this.makeTruckModels(trucks);
 
     _.each(truckModels, function(truck) {
       this.add(truck);
     }.bind(this));
-    
+
     this.trigger('doneAdding');
   }
  

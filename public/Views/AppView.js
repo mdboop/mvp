@@ -1,9 +1,11 @@
 var AppView = Backbone.View.extend({
   tagName: 'div',
   className: 'container',
-  template: _.template('<h1>Food Truck Finder</h1> \
-  <h3>Hungry? Enter your location:</h3> \
-  <input class="inputField" type="text"/>'),
+  template: _.template('<div class="header"> \
+                        <h1>Food Truck Finder</h1> \
+                        <h2>Hungry? Enter your location:</h2> \
+                        <input class="inputField" type="text" placeholder="944 Market Street"/> \
+                        </div>'),
 
   events: {
     'click .formSubmit': 'formSubmit',
