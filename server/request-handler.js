@@ -4,6 +4,20 @@ var _ = require('underscore');
 var geolib = require('geolib');
 var key = require('./env/config.js');
 
+var yelp = require("yelp").createClient({
+  consumer_key: "oMe1MKnLxKsPtJFq-vPw8A", 
+  consumer_secret: "P_yy5mbRrkI_xko-UhPEORWFPxU",
+  token: "Y5qfwitYiF_7IhQ5sjY2RRWMgl6ffpBw",
+  token_secret: "SB63i_AYNs22GIsIJOI-JhomeTM"
+});
+
+var getYelpResult = function(location) {
+  yelp.search({term: "Food Trucks", location: "San Francisco", cll: location }, function(error, data) {
+  console.log(error);
+  console.log(data);
+});
+};
+
 var getOpenTrucks = function(time, data) {
   data = JSON.parse(data);
   var trucks = [];
@@ -42,5 +56,6 @@ var getDistances = function(trucks, location) {
   return formattedTrucks;
 };
 
+exports.getYelpResult = getYelpResult;
 exports.getOpenTrucks = getOpenTrucks;
 exports.getDistance = getDistances;
