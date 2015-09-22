@@ -22,18 +22,17 @@ var getOpenTrucks = function(time, data) {
 var getDistances = function(trucks, location) {
   var formattedTrucks = [];
   _.each(trucks, function(truck) {
-
     if(truck.latitude && truck.longitude) {
       var truckLocation = {
         latitude: truck.latitude,
         longitude: truck.longitude
       };
-
       var distance = (geolib.getDistance(location, truckLocation) * 0.000621371);
       distance = distance.toPrecision(2) + ' miles';
       var formattedTruck = {
         name: truck.applicant,
         distance: distance,
+        location: truck.location
       };
       formattedTrucks.push(formattedTruck); 
     }
@@ -41,10 +40,5 @@ var getDistances = function(trucks, location) {
   return formattedTrucks;
 };
 
-var filterTrucks = function(trucks, location) {
-
-};
-
 exports.getOpenTrucks = getOpenTrucks;
-exports.filterTrucks = filterTrucks;
 exports.getDistance = getDistances;

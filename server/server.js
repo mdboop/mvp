@@ -22,8 +22,10 @@ app.get('/', function() {
 });
 
 app.post('/food-trucks', function(req, res) {
+  
   var loc = req.body.location;
   var time = req.body.time;
+
   Promise.all([
     request('https://data.sfgov.org/resource/jjew-r69b.json?dayorder=' + time.day),
     request('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + key.key)
@@ -35,25 +37,16 @@ app.post('/food-trucks', function(req, res) {
       latitude: userLocation.lat,
       longitude: userLocation.lng
     };
-    
+
     var trucks = handler.getOpenTrucks(time, data[0]);
     var results = handler.getDistance(trucks, loc);
     res.send(results);
+
   })
   .catch(function(err) {
     console.log('server: ', err);
   });
   
-  // .then(function (trucks) {
-  //   res.send(trucks);
-  // });
-  // handler.getLocation(loc)
-  // .then(function(data) {
-  //   console.log(data);
-  // })
-  // .catch(function(err) {
-  //   console.log('getLocation error: ', err);
-  // });
 });
 
 

@@ -8,15 +8,19 @@ var Trucks = Backbone.Collection.extend({
       time: time
     };
     console.log('client side data: ', data);
+    $.post('/food-trucks', data, function(res) {
+      this.addTrucks(res);
+    }.bind(this));
+  },
 
-    $.ajax({
-      url: '/food-trucks', 
-      method: 'post',
-      'data': data,
-      success: function(res) {
-        console.log('server response: ', res);
-      } 
-  });
+  addTrucks: function (trucks) {
+    _.each(trucks, function(truck) {
+      this.add({ model: new Truck({
+        
+      })
+    });
+
+    }.bind(this));
   }
  
 });
