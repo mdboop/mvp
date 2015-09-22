@@ -13,6 +13,13 @@ var Trucks = Backbone.Collection.extend({
   },
 
   addTrucks: function (trucks) {
+    this.reset();
+    trucks = _.uniq(trucks, function(truck) {
+      return truck.name;
+    });
+    trucks = _.sortBy(trucks, function(truck) {
+      return truck.distance;
+    });
     var truckModels = _.map(trucks, function(truck) {
       var newTruck = new Truck({
         name: truck.name,
@@ -24,6 +31,7 @@ var Trucks = Backbone.Collection.extend({
     _.each(truckModels, function(truck) {
       this.add(truck);
     }.bind(this));
+    this.trigger('doneAdding');
   }
  
 });

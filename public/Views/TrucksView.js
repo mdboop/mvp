@@ -1,7 +1,7 @@
 var TrucksView = Backbone.View.extend({
   tagName: 'div',
   initialize: function () {
-    this.listenTo(this.collection, 'add', this.render);
+    this.listenTo(this.collection, 'doneAdding', this.render);
     this.render();
   },
 
@@ -9,6 +9,7 @@ var TrucksView = Backbone.View.extend({
     var $els = this.collection.map(function(model) {
       return new TruckEntryView({ model: model });
     });
+    this.$el.empty();
     $els.forEach(function(node) {
       this.$el.append(node.$el);
     }.bind(this));
