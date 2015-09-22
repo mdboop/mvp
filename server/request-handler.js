@@ -11,7 +11,7 @@ var yelp = require("yelp").createClient({
   token_secret: "SB63i_AYNs22GIsIJOI-JhomeTM"
 });
 
-var getMatrixDistances = function(trucks, location) {
+var getMatrixDistances = function (trucks, location) {
 
   var trucksA = trucks.slice(0,trucks.length/2);
   var trucksB = trucks.slice(trucks.length/2);
@@ -40,7 +40,7 @@ var getMatrixDistances = function(trucks, location) {
   .then()
 };
 
-var getOpenTrucks = function(time, data) {
+var getOpenTrucks = function (time, data) {
   data = JSON.parse(data);
   var trucks = [];
   var nowTime = Number(time.hour);
@@ -55,8 +55,17 @@ var getOpenTrucks = function(time, data) {
   return trucks;
 };
 
+var formatTruck = function (truck, distance) {
+  return {
+    name: truck.applicant,
+    latitude: truck.latitude,
+    longitude: truck.longitude,
+    distance: distance,
+    location: truck.location
+  };
+};
 
-var getDistances = function(trucks, location) {
+var getDistances = function (trucks, location) {
   var formattedTrucks = [];
   _.each(trucks, function(truck) {
     if(truck.latitude && truck.longitude) {
@@ -66,14 +75,7 @@ var getDistances = function(trucks, location) {
       };
       var distance = (geolib.getDistance(location, truckLocation) * 0.000621371);
       distance = distance.toPrecision(2) + ' miles';
-      var formattedTruck = {
-        name: truck.applicant,
-        latitude: truck.latitude,
-        longitude: truck.longitude,
-        distance: distance,
-        location: truck.location
-      };
-      formattedTrucks.push(formattedTruck); 
+      formattedTrucks.push(formatTruck(truck, distance)); 
     }
   });
   return formattedTrucks;
