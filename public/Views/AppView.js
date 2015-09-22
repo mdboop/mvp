@@ -1,11 +1,13 @@
 var AppView = Backbone.View.extend({
   tagName: 'div',
   className: 'container',
-  template: _.template('<div class="header"> \
-                        <h1>Food Truck Finder</h1> \
-                        <h2>Hungry? Enter your location:</h2> \
-                        <input class="inputField" type="text" placeholder="944 Market Street"/> \
-                        </div>'),
+  template: _.template('<header class="header"> \
+                        <h2>Food Truck Finder</h2> \
+                        <h3>Hungry? Enter your location:</h3> \
+                        <div class=input-field> \
+                        <input type="text" placeholder="944 Market Street"/> \
+                        </div> \
+                        </header>'),
 
   events: {
     'click .formSubmit': 'formSubmit',
@@ -21,11 +23,11 @@ var AppView = Backbone.View.extend({
 
   formSubmit : function(e) {
     if(e.which === 13) {
-      var loc = $('.inputField').val();
+      var loc = $('.input-field').val();
       var time = this.formatTime();
       var location = this.formatLocation(loc);
       this.model.get('trucks').getTrucks(location, time);
-      $('.inputField').val('');
+      $('input').val('');
     }
   },
 

@@ -1,10 +1,10 @@
 var TruckEntryView = Backbone.View.extend({
-  tagname: 'div',
-  className: 'truck',
-  template: _.template('<span class="truck-name"><%= name %></span> \
+  tagname: 'ul',
+  className: 'collection',
+  template: _.template('<li class="collection-item deep-orange lighten-3"><%= name %></li> \
                         <a href= http://maps.google.com/?q=<%= latitude %>,<%= longitude %>> \
-                        <span class="truck-location"><%= location %></span></a> \
-                        <span class="truck-distance"><%= distance %></span>'),
+                        <li class="collection-item"><%= location %></li></a> \
+                        <li class="collection-item"><%= distance %></li>'),
 
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
