@@ -13,6 +13,7 @@
     "body-parser": "^1.14.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "geolib": "^2.0.18",
     "request": "^2.63.0",
     "request-promise": "^0.4.3",
     "underscore": "^1.8.3"

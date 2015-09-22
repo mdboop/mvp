@@ -29,9 +29,16 @@ app.post('/food-trucks', function(req, res) {
     request('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + key.key)
     ])
   .then(function(data) {
-    var userLocation = data[1].results[0].geometry.location;
+    var geocode = JSON.parse(data[1]);
+    var userLocation = geocode.results[0].geometry.location;
+    var loc = {
+      latitude: userLocation.lat,
+      longitude: userLocation.lng
+    };
     
-    handler.getOpenTrucks(data[0]);
+    var trucks = handler.getOpenTrucks(time, data[0]);
+    var results = handler.getDistance(trucks, loc);
+    res.send(results);
   })
   .catch(function(err) {
     console.log('server: ', err);
@@ -47,7 +54,6 @@ app.post('/food-trucks', function(req, res) {
   // .catch(function(err) {
   //   console.log('getLocation error: ', err);
   // });
-  res.sendStatus(200);
 });
 
 
