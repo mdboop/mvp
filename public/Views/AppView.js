@@ -3,7 +3,7 @@ var AppView = Backbone.View.extend({
   className: 'container',
   template: _.template('<header class="header"> \
                         <h2>Food Truck Finder</h2> \
-                        <h3>Hungry? Enter your location:</h3> \
+                        <h5>Hungry? Enter your location:</h5> \
                         <div class=input-field> \
                         <input type="text" placeholder="944 Market Street"/> \
                         </div> \

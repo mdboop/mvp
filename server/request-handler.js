@@ -11,11 +11,33 @@ var yelp = require("yelp").createClient({
   token_secret: "SB63i_AYNs22GIsIJOI-JhomeTM"
 });
 
-var getYelpResult = function(location) {
-  yelp.search({term: "Food Trucks", location: "San Francisco", cll: location }, function(error, data) {
-  console.log(error);
-  console.log(data);
-});
+var getMatrixDistances = function(trucks, location) {
+
+  var trucksA = trucks.slice(0,trucks.length/2);
+  var trucksB = trucks.slice(trucks.length/2);
+  var matrixRequestA = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' +
+                      loc.latitude + ',' + loc.longitude + '&destinations=';
+  var matrixRequestB = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' +
+                      loc.latitude + ',' + loc.longitude + '&destinations=';
+  _.each(trucksA, function(truck, i) {
+    if(i < trucks.length - 1) {
+      matrixRequestA += truck.latitude + ',' + truck.longitude + '|';
+    }
+  });
+
+  _.each(trucksB, function(truck, i) {
+    if(i < trucks.length - 1) {
+      matrixRequestB += truck.latitude + ',' + truck.longitude + '|';
+    }
+  });
+  matrixRequestA = matrixRequestA.slice(0,matrixRequestA.length - 1) + '&key=' + key.key;
+  matrixRequestB = matrixRequestB.slice(0,matrixRequestB.length - 1) + '&key=' + key.key;
+
+  Promise.all([
+    request(matrixRequestA),
+    request(matrixRequestB)
+    ])
+  .then()
 };
 
 var getOpenTrucks = function(time, data) {
@@ -32,6 +54,7 @@ var getOpenTrucks = function(time, data) {
   });
   return trucks;
 };
+
 
 var getDistances = function(trucks, location) {
   var formattedTrucks = [];
@@ -56,6 +79,6 @@ var getDistances = function(trucks, location) {
   return formattedTrucks;
 };
 
-exports.getYelpResult = getYelpResult;
+exports.getYelpResult = getMatrixDistances;
 exports.getOpenTrucks = getOpenTrucks;
 exports.getDistance = getDistances;
