@@ -7,7 +7,6 @@ var Trucks = Backbone.Collection.extend({
       location: location,
       time: time
     };
-    console.log('client side data: ', data);
     $.post('/food-trucks', data, function(res) {
       this.addTrucks(res);
     }.bind(this));
