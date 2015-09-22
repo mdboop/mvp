@@ -6,7 +6,7 @@ var request = require('request-promise');
 var Promise = require('bluebird');
 var handler = require('./request-handler.js');
 var root = __dirname + "../public/";
-
+var key = require('./env/config.js');
 
 var app = express();
 
@@ -24,8 +24,19 @@ app.get('/', function() {
 app.post('/food-trucks', function(req, res) {
   var loc = req.body.location;
   var time = req.body.time;
-
-  handler.getOpenTrucks(time);
+  Promise.all([
+    request('https://data.sfgov.org/resource/jjew-r69b.json?dayorder=' + time.day),
+    request('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + key.key)
+    ])
+  .then(function(data) {
+    var userLocation = data[1].results[0].geometry.location;
+    
+    handler.getOpenTrucks(data[0]);
+  })
+  .catch(function(err) {
+    console.log('server: ', err);
+  });
+  
   // .then(function (trucks) {
   //   res.send(trucks);
   // });

@@ -3,9 +3,7 @@ var Promise = require('bluebird');
 var _ = require('underscore');
 var key = require('./env/config.js');
 
-var getOpenTrucks = function(time) {
-  request('https://data.sfgov.org/resource/jjew-r69b.json?dayorder=' + time.day)
-  .then(function(data) {
+var getOpenTrucks = function(data) {
     data = JSON.parse(data);
     var trucks = [];
     var nowTime = Number(time.hour);
@@ -18,18 +16,10 @@ var getOpenTrucks = function(time) {
       }
     });
     return trucks;
-  })
-  .catch(function(err) {
-    console.log('getOpenTrucks error: ', err);
-  });
 };
 
-var getLocation = function(location) {
-  request('https://maps.googleapis.com/maps/api/geocode/json?address=' + 
-    location + key.key)
-  .then(function(data) {
-    return data;
-  });
+var getDistances = function(trucks, location) {
+
 };
 
 var filterTrucks = function(trucks, location) {
