@@ -7,6 +7,7 @@ var Promise = require('bluebird');
 var handler = require('./request-handler.js');
 var root = __dirname + "../public/";
 var key = require('./env/config.js');
+var port = 8080;
 
 var app = express();
 
@@ -49,5 +50,5 @@ app.post('/food-trucks', function(req, res) {
   
 });
 
-
-app.listen(8080);
+app.listen(port);
+console.log("listening on port ", port);
