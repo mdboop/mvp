@@ -19,7 +19,6 @@ var AppView = Backbone.View.extend({
 
   formSubmit : function(e) {
     if(e.which === 13) {
-      console.log('hello');
       var loc = $('.inputField').val();
       var time = this.formatTime();
       var location = this.formatLocation(loc);
@@ -48,7 +47,6 @@ var AppView = Backbone.View.extend({
   render: function () {
     var el = this.$el.html(this.template());
     $('body').append(el);
-    console.log(this.trucks.$el);
     el.append(this.trucks.$el);
   }
 });
