@@ -1,7 +1,7 @@
 var TruckEntryView = Backbone.View.extend({
   tagname: 'ul',
   className: 'collection',
-  template: _.template('<li class="collection-item deep-orange lighten-3"><%= name %></li> \
+  template: _.template('<li class="collection-item deep-orange lighten-3 truck-name"><%= name %></li> \
                         <a href= http://maps.google.com/?q=<%= latitude %>,<%= longitude %>> \
                         <li class="collection-item"><%= location %></li></a> \
                         <li class="collection-item"><%= distance %></li>'),

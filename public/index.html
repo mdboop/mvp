@@ -9,7 +9,7 @@
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="styles.css">
   <title>trck trckr</title>
   <!-- Dependencies -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -32,6 +32,14 @@
     var app = new AppView({
       model: new App()
     });
+    var translation = function () {
+      var trck = ['truck', 'track', 'trick'];
+      var trckr = ['trucker', 'tracker', 'tricker'];
+      var string = '(' + trck[Math.floor(Math.random()*3)] + ' ' + trckr[Math.floor(Math.random()*3)] + ')';
+      $('.translation').text(string);
+    };
+    translation();
+    setInterval(translation,3000);
   });
   </script>
 </body>

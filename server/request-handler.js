@@ -37,7 +37,7 @@ var getMatrixDistances = function (trucks, location) {
     request(matrixRequestA),
     request(matrixRequestB)
     ])
-  .then()
+  .then();
 };
 
 var getOpenTrucks = function (time, data) {
